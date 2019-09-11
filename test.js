@@ -16,30 +16,32 @@ const rec = record.from(testObj);
 test('from', (t) => {
   t.deepEqual(rec((obj) => obj), testObj);
   t.deepEqual(record.from({})((obj) => obj), {});
-  t.true(record.from()((obj) => obj) === undefined);
+  t.deepEqual(record.from()((obj) => obj), {});
+  t.deepEqual(record.from(1)((obj) => obj), {});
+  t.deepEqual(record.from('ab')((obj) => obj), { '0': 'a', '1': 'b' });
+  t.deepEqual(record.from([1,2])((obj) => obj), { '0': 1, '1': 2 });
 });
 
 
 test('get', (t) => {
-  t.true(record.get(rec, 'a') === 42);
-  t.true(record.get(rec, 'f') === undefined);
-  t.true(record.get(record.from({}), 'a') === undefined);
-  t.throws(() => record.get(record.from(), 'a'));
+  t.is(record.get(rec, 'a'), 42);
+  t.is(record.get(rec, 'f'), undefined);
+  t.is(record.get(record.from({}), 'a'), undefined);
+  t.is(record.get(record.from(), 'a'), undefined);
 });
 
 
 test('toString', (t) => {
   t.true(record.toString(rec) === JSON.stringify(testObj));
   t.true(record.toString(record.from({})) === '{}');
-  t.true(record.toString(record.from()) === undefined);
+  t.is(record.toString(record.from()), undefined);
 });
 
 
 test('tryGet', async (t) => {
-  t.deepEqual(
-    record.tryGet(rec, 'a'),
-    Promise.resolve(42),
-  );
+  const resolved = await record.tryGet(rec, 'a');
+  
+  t.is(resolved, 42);
   
   const noSuchKey = await t.throwsAsync(
     record.tryGet(rec, 'f', undefined, new Error('!')),
@@ -53,5 +55,9 @@ test('tryGet', async (t) => {
   
   t.is(failsTest.message, '!');
   
-  t.throws(() => record.tryGet(record.from(), 'a'));
+  const noArgTo = await t.throwsAsync(
+    record.tryGet(rec, 'f', undefined, new Error('!')),
+  );
+  
+  t.is(noSuckKey.message, '!');
 });
