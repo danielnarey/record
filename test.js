@@ -43,21 +43,21 @@ test('tryGet', async (t) => {
   
   t.is(resolved, 42);
   
-  const noSuchKey = await t.throwsAsync(() =>
+  const noSuchKey = await t.throwsAsync(
     record.tryGet(rec, 'f', undefined, new Error('!')),
   );
   
-  t.is(noSuckKey.message, '!');
+  t.is(noSuchKey.message, '!');
   
-  const failsTest = await t.throwsAsync(() =>
+  const failsTest = await t.throwsAsync(
     record.tryGet(rec, 'a', (x) => x < 10, new Error('!')),
   );
   
   t.is(failsTest.message, '!');
   
-  const noArgTo = await t.throwsAsync(
-    record.tryGet(rec, 'f', undefined, new Error('!')),
+  const emptyRecord = await t.throwsAsync(
+    record.tryGet(record.from(), 'a', undefined, new Error('!')),
   );
   
-  t.is(noSuckKey.message, '!');
+  t.is(emptyRecord.message, '!');
 });
