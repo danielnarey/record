@@ -9,11 +9,12 @@
   "module": "dist/index.modern.js",
   "files": [
     "index.js",
+    "src",
     "dist"
   ],
   "scripts": {
     "build": "microbundle --target node",
-    "lint": "eslint --fix index.js",
+    "lint": "eslint --fix index.js src",
     "release": "npm run lint && npm run build && np",
     "sync": "git pull && git add . && git commit -m 'automated sync' && git push",
     "test": "npm run lint && npm run build && ava",

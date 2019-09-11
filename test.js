@@ -30,7 +30,7 @@ test('get', (t) => {
 
 test('toString', (t) => {
   t.true(record.toString(rec) === JSON.stringify(testObj));
-  t.true(record.toString(record.from({}) === '{}');
+  t.true(record.toString(record.from({})) === '{}');
   t.true(record.toString(record.from()) === undefined);
 });
 
