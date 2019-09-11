@@ -35,26 +35,23 @@ test('toString', (t) => {
 });
 
 
-test('tryGet', (t) => {
+test('tryGet', async (t) => {
   t.deepEqual(
     record.tryGet(rec, 'a'),
     Promise.resolve(42),
   );
   
-  t.deepEqual(
+  const noSuchKey = await t.throwsAsync(
     record.tryGet(rec, 'f', undefined, new Error('!')),
-    Promise.reject(new Error('!')),
   );
   
-  t.deepEqual(
-    record.tryGet(record.from({}), 'f', undefined, new Error('!')),
-    Promise.reject(new Error('!')),
-  );
+  t.is(noSuckKey.message, '!');
   
-  t.deepEqual(
+  const failsTest = await t.throwsAsync(
     record.tryGet(rec, 'a', (x) => x < 10, new Error('!')),
-    Promise.reject(new Error('!')),
   );
+  
+  t.is(failsTest.message, '!');
   
   t.throws(() => record.tryGet(record.from(), 'a'));
 });
