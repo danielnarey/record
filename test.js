@@ -34,7 +34,7 @@ test('get', (t) => {
 test('toString', (t) => {
   t.true(record.toString(rec) === JSON.stringify(testObj));
   t.true(record.toString(record.from({})) === '{}');
-  t.is(record.toString(record.from()), undefined);
+  t.is(record.toString(record.from()), '{}');
 });
 
 
@@ -43,13 +43,13 @@ test('tryGet', async (t) => {
   
   t.is(resolved, 42);
   
-  const noSuchKey = await t.throwsAsync(
+  const noSuchKey = await t.throwsAsync(() =>
     record.tryGet(rec, 'f', undefined, new Error('!')),
   );
   
   t.is(noSuckKey.message, '!');
   
-  const failsTest = await t.throwsAsync(
+  const failsTest = await t.throwsAsync(() =>
     record.tryGet(rec, 'a', (x) => x < 10, new Error('!')),
   );
   
