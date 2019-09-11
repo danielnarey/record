@@ -1,0 +1,54 @@
+{
+  "name": "@danielnarey/record",
+  "version": "0.0.0",
+  "description": "A tiny functional data structure for static key-value stores",
+  "source": "index.js",
+  "main": "dist/index.js",
+  "umd:main": "dist/index.umd.js",
+  "unpkg": "dist/index.umd.js",
+  "module": "dist/index.modern.js",
+  "files": [
+    "index.js",
+    "dist"
+  ],
+  "scripts": {
+    "build": "microbundle --target node",
+    "lint": "eslint --fix index.js",
+    "release": "npm run lint && npm run build && np",
+    "sync": "git pull && git add . && git commit -m 'automated sync' && git push",
+    "test": "npm run lint && npm run build && ava",
+    "update": "updtr"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danielnarey/record"
+  },
+  "keywords": [
+    "pair",
+    "immutable",
+    "functional",
+    "cons",
+    "tuple",
+    "two"
+  ],
+  "author": "Daniel C. Narey",
+  "license": "MIT",
+  "engines": {
+    "node": ">=10"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "ava": "^2.3.0",
+    "eslint": "^6.2.2",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-ava": "^8.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-types": "^1.0.2",
+    "microbundle": "^0.12.0-next.6",
+    "np": "^5.0.3",
+    "updtr": "^3.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
