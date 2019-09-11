@@ -1,5 +1,12 @@
+import _from from './src/from';
+import get from './src/get';
+import toString from './src/to-string';
+import tryGet from './src/try-get';
+
+
 export default {
-  from: (obj) => (o) => o({ ...obj }),
-  get: (r, key) => r((obj) => obj[key]),
-  tryGet: (r, key, test = empty, cb) => r((obj) => obj[key]
+  from: _from,
+  get,
+  toString,
+  tryGet,
 };
