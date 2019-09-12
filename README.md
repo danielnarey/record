@@ -29,5 +29,5 @@ is not supplied, the default test returns `true` for any value that is not
 ### `keys(rec) => [...]`
 Returns an array containing all of the keys in *rec*.
 
-### `toString(rec) => '{ ... }'`
+### `toString(rec) => '{...}'`
 Returns the contents of *rec* as a JSON string.
