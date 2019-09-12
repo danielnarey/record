@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "description": "A tiny functional data structure for static key-value stores",
   "source": "index.js",
-  "main": "dist/record.cjs.js",
-  "module": "dist/record.esm.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
   "files": [
     "dist"
   ],

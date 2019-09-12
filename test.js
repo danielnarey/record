@@ -1,5 +1,5 @@
 import test from 'ava';
-import record from './dist/record.cjs';
+import record from './dist/index.cjs';
 
 
 const testObj = { 
