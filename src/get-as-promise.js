@@ -1,11 +1,12 @@
-/* ### `getAsPromise(rec, k, [test, [err]]) => Promise<v|err>`
+/**
+ * ### `getAsPromise(rec, k, [test, [err]]) => Promise<v|err>`
  * If *k* exists in *rec* and passing its associated value *v* to *test*
  * returns `true`, **getAsPromise** returns a promise resolving to *v*. If
  * *k* does not exist or *test* returns `false`, **getAsPromise** returns a
  * promise that rejects with *err*. If a test function is not supplied, the
  * default test returns `true` for any value that is not `undefined` or
  * `null`.
-*/
+ */
 export default (
   rec,
   k,
