@@ -3,17 +3,13 @@
   "version": "0.0.0",
   "description": "A tiny functional data structure for static key-value stores",
   "source": "index.js",
-  "main": "dist/index.js",
-  "umd:main": "dist/index.umd.js",
-  "unpkg": "dist/index.umd.js",
-  "module": "dist/index.modern.js",
+  "main": "dist/record.cjs.js",
+  "module": "dist/record.esm.js",
   "files": [
-    "index.js",
-    "src",
     "dist"
   ],
   "scripts": {
-    "build": "microbundle --target node",
+    "build": "rollup -c",
     "lint": "eslint --fix index.js src",
     "release": "npm run lint && npm run build && np",
     "sync": "git pull && git add . && git commit -m 'automated sync' && git push",
@@ -25,12 +21,11 @@
     "url": "https://github.com/danielnarey/record"
   },
   "keywords": [
-    "pair",
+    "record",
     "immutable",
     "functional",
-    "cons",
-    "tuple",
-    "two"
+    "key",
+    "value"
   ],
   "author": "Daniel C. Narey",
   "license": "MIT",
@@ -47,8 +42,6 @@
     "eslint-plugin-types": "^1.0.2",
     "np": "^5.0.3",
     "rollup": "^1.21.2",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
     "updtr": "^3.1.0"
   },
   "publishConfig": {
