@@ -31,14 +31,7 @@ test('get', (t) => {
 });
 
 
-test('toString', (t) => {
-  t.true(record.toString(rec) === JSON.stringify(testObj));
-  t.true(record.toString(record.from({})) === '{}');
-  t.is(record.toString(record.from()), '{}');
-});
-
-
-test('tryGet', async (t) => {
+test('getAsPromise', async (t) => {
   const resolved = await record.tryGet(rec, 'a');
   
   t.is(resolved, 42);
@@ -50,7 +43,7 @@ test('tryGet', async (t) => {
   t.is(noSuchKey.message, '!');
   
   const failsTest = await t.throwsAsync(
-    record.tryGet(rec, 'a', (x) => x < 10, new Error('!')),
+    record.tryGet(rec, 'a', (x) => (x < 10), new Error('!')),
   );
   
   t.is(failsTest.message, '!');
@@ -60,4 +53,26 @@ test('tryGet', async (t) => {
   );
   
   t.is(emptyRecord.message, '!');
+});
+
+
+test('getWithDefault', (t) => {
+  t.is(record.getWithDefalt(rec, 'a', 0), 42);
+  t.is(record.getWithDefalt(rec, 'a', 0, (x) => (x < 10)), 0);
+  t.is(record.get(rec, 'f', 0), 0);
+  t.is(record.get(record.from({}), 'a', 0), 0);
+  t.is(record.get(record.from(), 'a', 0), 0);
+});
+
+
+test('keys', (t) => {
+  t.deepEqual(record.keys(rec), Object.keys(testObj));
+  t.deepEqual(record.keys(record.from({})), []);
+  t.deepEqual(record.keys(record.from()), []);
+});
+
+test('toString', (t) => {
+  t.is(record.toString(rec), JSON.stringify(testObj));
+  t.is(record.toString(record.from({})), '{}');
+  t.is(record.toString(record.from()), '{}');
 });
