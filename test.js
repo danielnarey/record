@@ -32,24 +32,24 @@ test('get', (t) => {
 
 
 test('getAsPromise', async (t) => {
-  const resolved = await record.tryGet(rec, 'a');
+  const resolved = await record.getAsPromise(rec, 'a');
   
   t.is(resolved, 42);
   
   const noSuchKey = await t.throwsAsync(
-    record.tryGet(rec, 'f', undefined, new Error('!')),
+    record.getAsPromise(rec, 'f', undefined, new Error('!')),
   );
   
   t.is(noSuchKey.message, '!');
   
   const failsTest = await t.throwsAsync(
-    record.tryGet(rec, 'a', (x) => (x < 10), new Error('!')),
+    record.getAsPromise(rec, 'a', (x) => (x < 10), new Error('!')),
   );
   
   t.is(failsTest.message, '!');
   
   const emptyRecord = await t.throwsAsync(
-    record.tryGet(record.from(), 'a', undefined, new Error('!')),
+    record.getAsPromise(record.from(), 'a', undefined, new Error('!')),
   );
   
   t.is(emptyRecord.message, '!');
@@ -57,11 +57,11 @@ test('getAsPromise', async (t) => {
 
 
 test('getWithDefault', (t) => {
-  t.is(record.getWithDefalt(rec, 'a', 0), 42);
-  t.is(record.getWithDefalt(rec, 'a', 0, (x) => (x < 10)), 0);
-  t.is(record.get(rec, 'f', 0), 0);
-  t.is(record.get(record.from({}), 'a', 0), 0);
-  t.is(record.get(record.from(), 'a', 0), 0);
+  t.is(record.getWithDefault(rec, 'a', 0), 42);
+  t.is(record.getWithDefault(rec, 'a', 0, (x) => (x < 10)), 0);
+  t.is(record.getWithDefault(rec, 'f', 0), 0);
+  t.is(record.getWithDefault(record.from({}), 'a', 0), 0);
+  t.is(record.getWithDefault(record.from(), 'a', 0), 0);
 });
 
 
