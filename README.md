@@ -1,7 +1,45 @@
-# @danielnarey/record [![Build Status](https://travis-ci.com/danielnarey/record.svg?branch=master)](https://travis-ci.com/danielnarey/record) [![npm (scoped)](https://img.shields.io/npm/v/@danielnarey/record)](https://www.npmjs.com/package/@danielnarey/record)
+# @danielnarey/record [![Build Status](https://travis-ci.com/danielnarey/record.svg?branch=master)](https://travis-ci.com/danielnarey/record) [![npm (scoped)](https://img.shields.io/npm/v/@danielnarey/record)](https://www.npmjs.com/package/@danielnarey/record) ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/min/@danielnarey/record)
 
 **A tiny functional data structure for static key-value stores**
 
+When you have key-value data that should only be set once in the context of an application, using a **record** gives you convenient accessors, while preventing you from accidentally modifying your application's source of truth. 
+
+A record is just a thin layer of abstraction over `Object`, which makes it trivial to serialize record data to JSON for storage and retrieval.
+
+
+## Examples
+
+```js
+import record from '@danielnarey/record';
+// OR: const record = require('@danielnarey/record');
+
+// constructor
+const rec = record.from({
+  banana: '🍌',
+  grapes: '🍇',
+  cherries: '🍒',
+  watermelon: '🍉',
+});
+
+typeof(rec); //--> 'function'
+
+// accessors
+record.get(rec, 'grapes');  //--> '🍇'
+record.get(rec, 'pineapple'); //--> undefined
+
+record.getAsPromise(rec, 'grapes').then(console.log); //--> '🍇'
+record.getAsPromise(rec, 'pineapple').catch(() => console.log(`🙈`)); //--> '🙈'
+
+record.getWithDefault(rec, 'grapes', '🙈'); //--> '🍇'
+record.getWithDefault(rec, 'pineapple', '🙈'); //--> '🙈'
+
+// conversion
+record.toString(rec); //--> '{"banana":"🍌","grapes":"🍇","cherries":"🍒","watermelon":"🍉"}'
+
+```
+
+
+## API
 
 ### `from(obj) => ({...})`
 Create an immutable record from a shallow clone of an object, returning a
@@ -31,3 +69,9 @@ Returns an array containing all of the keys in *rec*.
 
 ### `toString(rec) => '{...}'`
 Returns the contents of *rec* as a JSON string.
+
+
+## Prior Art
+
+- Racket/rebellion: [records](https://docs.racket-lang.org/rebellion/Records.html?q=reduce)
+- Elm: [records](https://elm-lang.org/docs/records)
