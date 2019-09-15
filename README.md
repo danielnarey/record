@@ -28,7 +28,7 @@ record.get(rec, 'grapes');  //--> '🍇'
 record.get(rec, 'pineapple'); //--> undefined
 
 record.getAsPromise(rec, 'grapes').then(console.log); //--> '🍇'
-record.getAsPromise(rec, 'pineapple').catch(() => console.log(`🙈`)); //--> '🙈'
+record.getAsPromise(rec, 'pineapple').catch(() => console.log('🙈')); //--> '🙈'
 
 record.getWithDefault(rec, 'grapes', '🙈'); //--> '🍇'
 record.getWithDefault(rec, 'pineapple', '🙈'); //--> '🙈'
