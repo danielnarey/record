@@ -1,6 +1,6 @@
 {
   "name": "@danielnarey/record",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "[Deprecated] A tiny functional data structure for static key-value stores",
   "source": "index.js",
   "main": "dist/index.cjs.js",
