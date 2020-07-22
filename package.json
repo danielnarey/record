@@ -20,13 +20,6 @@
     "type": "git",
     "url": "https://github.com/danielnarey/record"
   },
-  "keywords": [
-    "record",
-    "immutable",
-    "functional",
-    "key",
-    "value"
-  ],
   "author": "Daniel C. Narey",
   "license": "MIT",
   "engines": {
