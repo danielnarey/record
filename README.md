@@ -1,6 +1,6 @@
 # @danielnarey/record
 
-**A tiny functional data structure for static key-value stores**
+**[Deprecated] A tiny functional data structure for static key-value stores**
 
 > **Deprecation Warning**: *This experimental library is no longer in active development and will not be updated in response to Node.js version  releases or security vulnerabilities identified in the dependency tree.*
 
