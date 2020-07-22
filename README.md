@@ -1,6 +1,10 @@
-# @danielnarey/record [![Build Status](https://travis-ci.com/danielnarey/record.svg?branch=master)](https://travis-ci.com/danielnarey/record) [![npm (scoped)](https://img.shields.io/npm/v/@danielnarey/record)](https://www.npmjs.com/package/@danielnarey/record) ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/min/@danielnarey/record)
+# @danielnarey/record
 
 **A tiny functional data structure for static key-value stores**
+
+> **Deprecation Warning**: *This experimental library is no longer in active development and will not be updated in response to Node.js version  releases or security vulnerabilities identified in the dependency tree.*
+
+## Purpose
 
 When you have key-value data that should only be set once in the context of an application, using a **record** gives you convenient accessors, while preventing you from accidentally modifying your application's source of truth. 
 
