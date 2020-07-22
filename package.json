@@ -1,7 +1,7 @@
 {
   "name": "@danielnarey/record",
   "version": "0.1.0",
-  "description": "A tiny functional data structure for static key-value stores",
+  "description": "[Deprecated] A tiny functional data structure for static key-value stores",
   "source": "index.js",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
